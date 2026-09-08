@@ -5,6 +5,7 @@ const envSchema = z.object({
     .enum(["development", "test", "production"])
     .default("development"),
   PORT: z.coerce.number().int().positive().default(3000),
+  ANTHROPIC_API_KEY: z.string().min(1, "ANTHROPIC_API_KEY is required"),
 });
 
 export const env = envSchema.parse(process.env);
