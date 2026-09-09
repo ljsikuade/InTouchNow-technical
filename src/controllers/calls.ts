@@ -1,14 +1,13 @@
 import { Request, Response } from "express";
 import { ProcessCallInput } from "@schemas/call";
+import { processCallTranscript } from "@services/call-service";
 
-export const processCall = (
+export const processCall = async (
   req: Request<unknown, unknown, ProcessCallInput>,
   res: Response
-): void => {
+): Promise<void> => {
   const { transcript } = req.body;
+  const extraction = await processCallTranscript(transcript);
 
-  res.status(200).json({
-    status: "accepted",
-    transcript: { length: transcript.length },
-  });
+  res.status(200).json(extraction);
 };

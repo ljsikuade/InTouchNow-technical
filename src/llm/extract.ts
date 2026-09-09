@@ -5,13 +5,12 @@ import { extractionModel } from "@llm/model";
 
 export interface ExtractionResult {
   data: CallExtraction;
-  usage: { inputTokens?: number; outputTokens?: number };
 }
 
 export const extractCallData = async (
   transcript: string
 ): Promise<ExtractionResult> => {
-  const { output, usage } = await generateText({
+  const { output } = await generateText({
     model: extractionModel,
     output: Output.object({
       schema: callExtractionSchema,
@@ -25,9 +24,5 @@ export const extractCallData = async (
 
   return {
     data: output,
-    usage: {
-      inputTokens: usage.inputTokens,
-      outputTokens: usage.outputTokens,
-    },
   };
 };

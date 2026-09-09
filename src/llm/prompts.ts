@@ -29,7 +29,7 @@ Follow these rules exactly:
 8. recommended_action.type is the only judgement you must always commit to,
    one of: ${ACTION_TYPE.join(", ")}. Use "unclear" when the transcript does not
    support a confident choice — for example when intent is null, or when too
-   much of the caller's detail is missing to act on.
+   much of the caller's detail is missing to act on. Use escalate_urgent if urgency is "emergency".
 9. recommended_action.mode is one of: ${ACTION_MODE.join(", ")}, or null when
    the transcript does not support a confident choice.
 `.trim();
