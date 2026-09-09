@@ -129,9 +129,7 @@ describe("processCallTranscript", () => {
     });
 
     it("a missing API key -> 500", async () => {
-      failWith(
-        new LoadAPIKeyError({ message: "ANTHROPIC_API_KEY is missing" })
-      );
+      failWith(new LoadAPIKeyError({ message: "AI_API_KEY is missing" }));
       expect((await captureError()).statusCode).toBe(500);
     });
 

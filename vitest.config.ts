@@ -23,6 +23,6 @@ export default defineConfig({
   test: {
     environment: "node",
     include: ["test/**/*.test.ts"],
-    env: { ANTHROPIC_API_KEY: "test-key" },
+    env: { AI_API_KEY: "test-key" },
   },
 });

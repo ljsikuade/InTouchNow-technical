@@ -31,7 +31,10 @@ beforeEach(() => {
 });
 
 const post = (body: unknown) =>
-  request(app).post("/process-call").set("content-type", "application/json").send(body as object);
+  request(app)
+    .post("/process-call")
+    .set("content-type", "application/json")
+    .send(body as object);
 
 describe("POST /process-call", () => {
   describe("successful extraction", () => {
@@ -116,7 +119,7 @@ describe("POST /process-call", () => {
               isRetryable: true,
             }),
           ],
-        }),
+        })
       );
 
       const res = await post({ transcript: COMPLETE_TRANSCRIPT });
@@ -132,7 +135,7 @@ describe("POST /process-call", () => {
           requestBodyValues: {},
           statusCode: 400,
           isRetryable: false,
-        }),
+        })
       );
 
       const res = await post({ transcript: COMPLETE_TRANSCRIPT });
@@ -148,7 +151,7 @@ describe("POST /process-call", () => {
     });
 
     it("never leaks provider internals to the client", async () => {
-      failWith(new Error("ANTHROPIC_API_KEY=sk-secret leaked"));
+      failWith(new Error("AI_API_KEY=sk-secret leaked"));
       const res = await post({ transcript: COMPLETE_TRANSCRIPT });
 
       expect(res.status).toBe(502);
